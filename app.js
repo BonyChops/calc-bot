@@ -36,7 +36,11 @@ client.on('message', async (msg) => {
         msg.channel.stopTyping();
         return;
     }
-    const result = await exec(`timeout 10 maxima --batch-string="${command};" --very-quiet`);
+    try {
+        const result = await exec(`timeout 10 maxima --batch-string="${command};" --very-quiet`);
+    } catch (error) {
+        msg.reply("えらったっぴ");
+    }
     const lines = result.split(/\r*\n/).filter(el => el.trim() != '');
     const linesNum = lines.length;
     if (!isTeX) {
