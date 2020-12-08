@@ -36,8 +36,9 @@ client.on('message', async (msg) => {
         msg.channel.stopTyping();
         return;
     }
+    let result;
     try {
-        const result = await exec(`timeout 10 maxima --batch-string="${command};" --very-quiet`);
+       result = await exec(`timeout 10 maxima --batch-string="${command};" --very-quiet`);
     } catch (error) {
         msg.reply("えらったっぴ");
     }
